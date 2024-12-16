@@ -22,10 +22,11 @@ export default function ReadERC20(props: Props) {
 
   async function transfer(event: React.FormEvent) {
     event.preventDefault()
-    if (!window.ethereum) return
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const signer = provider.getSigner()
-    const erc20: Contract = new ethers.Contract(addressContract, abi, signer)
+    if (!window.ethereum) return;
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const erc20: Contract = new ethers.Contract(addressContract, abi, signer);
 
     erc20.transfer(toAddress, parseEther(amount))
       .then((tr: TransactionResponse) => {
